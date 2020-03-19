@@ -14,7 +14,6 @@ class GeoApi {
         if ($zip_code && $name) {
           curl_setopt($ch, CURLOPT_URL, $url);
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($ch, CURLOPT_HEADER, 0);
 
           try {
             $response = curl_exec($ch);
@@ -24,8 +23,6 @@ class GeoApi {
              throw new \Exception('Cette mairie n\'existe pas !');
           }
 
-        } else {
-          dd('errors');
         }
       return $clearedResponse;
     }

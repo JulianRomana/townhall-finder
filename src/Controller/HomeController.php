@@ -35,13 +35,14 @@ class HomeController extends AbstractController
               $cityCode = get_object_vars($city)['code'];
               $townHallInfos = $facilitiesApi->getCityFacilities($cityCode);
 
-            } catch (\Exception $error) {
+            } catch (\Exception $exception) {
 
               return $this->render('base.html.twig', [
                 'search_form' => $form->createView(),
-                'error' => $error
+                'error' => $exception->getMessage()
               ]);
             }
+
             if (count($townHallInfos)) {
               $clearedTownHallInfos = [
                 'name' => $townHallInfos['nom'],
