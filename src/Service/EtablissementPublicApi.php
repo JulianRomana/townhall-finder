@@ -13,7 +13,13 @@ class EtablissementPublicApi {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
 
-    $response = curl_exec ($ch);
+    try {
+      $response = curl_exec ($ch);
+    }
+    catch (\Exception $error) {
+      throw new \Exception('Aucune info sur cette mairie !');
+    }
+
     curl_close($ch);
     $clearedResponse = json_decode($response);
 

@@ -3,10 +3,10 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Error;
 
 class GeoApi {
-    public function getCity($name, $zip_code, NotFoundHttpException $error)
+    public function getCity($name, $zip_code)
     {
       $clearedName = str_replace(' ', '%20', $name);
       $url = 'https://geo.api.gouv.fr/communes?nom='.$clearedName.'&codePostal='.$zip_code.'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre';
@@ -20,8 +20,8 @@ class GeoApi {
             $response = curl_exec($ch);
             $clearedResponse = json_decode($response)[0];
             curl_close($ch);
-          } catch ( \Exception $e) {
-             throw $error->('Une erreur est survenue');
+          } catch (\Exception $e) {
+             throw new \Exception('Cette mairie n\'existe pas !');
           }
 
         } else {

@@ -35,7 +35,7 @@ class HomeController extends AbstractController
               $cityCode = get_object_vars($city)['code'];
               $townHallInfos = $facilitiesApi->getCityFacilities($cityCode);
 
-            } catch (\Error $error) {
+            } catch (\Exception $error) {
 
               return $this->render('base.html.twig', [
                 'search_form' => $form->createView(),
