@@ -1,0 +1,15 @@
+<div class="formName">
+    {{ form_label(search_form.name) }}
+    {{ form_widget(search_form.name, { 'value': '' }) }}
+    <div class="formError">
+        {{ form_errors(search_form.name, {'attr': {'class': 'error'}}) }}
+    </div>
+</div>
+<div class="formZipCode">
+    {{ form_label(search_form.zip_code) }}
+    {{ form_widget(search_form.zip_code, { 'value': '' }) }}
+    <div class="formError">
+        {{ form_errors(search_form.zip_code, {'attr': {'class': 'error'}}) }}
+    </div>
+</div>
+{{ form_widget(search_form.submit) }}
